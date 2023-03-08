@@ -1,32 +1,119 @@
 
+const buttonPortfolio = document.querySelector("#button-portfolio").innerHTML = "Tous";
+const buttonPortfolio1 =document.querySelector("#button-portfolio-1").innerHTML = "Objets";
+const buttonPortfolio2 =document.querySelector("#button-portfolio-2").innerHTML = "Appartements";
+const buttonPortfolio3 =document.querySelector("#button-portfolio-3").innerHTML = "Hôtels & restaurants";
+const allButton = document.querySelectorAll(".button-portfolio");
 
 
-
-/*const boutonTous = document.createElement("div").innerHTML = "Tous";
-const boutonObjets = document.createElement("button").innerHTML = "Objets";
-const boutonAppartements = document.createElement("button").innerHTML = "Appartements";
-const boutonHotelRestaurant = document.createElement("button").innerHTML = "Hôtels & restaurants";
-const maDiv = document.querySelector('#portfolio');
-maDiv.appendChild(boutonTous);*/
-document.querySelector("#button-portfolio").innerHTML = "Tous";
-document.querySelector("#button-portfolio-2").innerHTML = "Objets";
-document.querySelector("#button-portfolio-3").innerHTML = "Appartements";
-document.querySelector("#button-portfolio-4").innerHTML = "Hôtels & restaurants";
-
-const response = fetch("http://localhost:5678/api/works")
-.then(res => res.json())
-
-.then(data =>
-    {
-        for (let i =0; i<data.length ; i++)
-        {
-            const image = document.querySelectorAll('.image');
-            image[i].src = data[i].imageUrl;
-            const caption = document.querySelectorAll(".caption");
-            caption[i].innerHTML = data[i].title;
-            const categoryId = data[i].categoryId   
-            console.log(categoryId);      
+let savedData = null;
+async function useFetcher () {
+    let response = await fetch("http://localhost:5678/api/works")
+    savedData = await response.json()
+            console.log(savedData)
+            for (let i =0; i<savedData.length ; i++)
+            {
+                let maGallerie = document.querySelector(".gallery")
+                let mafigure = document.createElement("figure")
+                let monImage = document.createElement("img")
+                let maCaption = document.createElement("p")
+                monImage.src = savedData[i].imageUrl
+                maCaption.innerHTML = savedData[i].title
+                maGallerie.appendChild(mafigure)
+                mafigure.appendChild(monImage)
+                mafigure.appendChild(maCaption)
+            }
         }
-    })
+useFetcher()
 
-   
+const eventButtonObjet = document.querySelector('#button-portfolio-1');
+eventButtonObjet.addEventListener('click', function () {
+    document.querySelector('.gallery').innerHTML='';
+            
+    for (let i = 0 ; i < savedData.length ; i++)
+    {
+        console.log(savedData[i].categoryId)
+        if ( savedData[i].categoryId == 1)
+        {
+            
+            let maGallerie = document.querySelector(".gallery")
+            let mafigure = document.createElement("figure")
+            let monImage = document.createElement("img")
+            let maCaption = document.createElement("p")
+            monImage.src = savedData[i].imageUrl
+            maCaption.innerHTML = savedData[i].title
+            maGallerie.appendChild(mafigure)
+            mafigure.appendChild(monImage)
+            mafigure.appendChild(maCaption)
+            
+        }
+        
+    }
+    
+    
+}
+
+)
+
+const eventButtonAppartement = document.querySelector('#button-portfolio-2');
+eventButtonAppartement.addEventListener('click', function () {
+    document.querySelector('.gallery').innerHTML='';
+            
+    for (let i = 0 ; i < savedData.length ; i++)
+    {
+        console.log(savedData[i].categoryId)
+        if ( savedData[i].categoryId == 2)
+        {
+            
+            let maGallerie = document.querySelector(".gallery")
+            let mafigure = document.createElement("figure")
+            let monImage = document.createElement("img")
+            let maCaption = document.createElement("p")
+            monImage.src = savedData[i].imageUrl
+            maCaption.innerHTML = savedData[i].title
+            maGallerie.appendChild(mafigure)
+            mafigure.appendChild(monImage)
+            mafigure.appendChild(maCaption)
+            
+        }
+        
+    }
+}
+
+)
+
+const eventButtonHotelRestaurant = document.querySelector('#button-portfolio-3');
+eventButtonHotelRestaurant.addEventListener('click', function () {
+    document.querySelector('.gallery').innerHTML='';
+            
+    for (let i = 0 ; i < savedData.length ; i++)
+    {
+        console.log(savedData[i].categoryId)
+        if ( savedData[i].categoryId == 3)
+        {
+            
+            let maGallerie = document.querySelector(".gallery")
+            let mafigure = document.createElement("figure")
+            let monImage = document.createElement("img")
+            let maCaption = document.createElement("p")
+            monImage.src = savedData[i].imageUrl
+            maCaption.innerHTML = savedData[i].title
+            maGallerie.appendChild(mafigure)
+            mafigure.appendChild(monImage)
+            mafigure.appendChild(maCaption)
+            
+        }
+        
+    }
+}
+
+)
+
+const eventButtonTous = document.querySelector('#button-portfolio');
+eventButtonTous.addEventListener('click', function () {
+    document.querySelector('.gallery').innerHTML='';
+            
+    useFetcher();
+}
+
+)

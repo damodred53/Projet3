@@ -189,7 +189,7 @@ footer nav ul {
 }
 
 /* ajout de Florent Guyard */
-
+/*Page principale*/
 .div-button-portfolio
 {
 	width: 50%;
@@ -216,3 +216,21 @@ footer nav ul {
 }
 
 
+/*page de connexion*/
+
+.monformulaire
+{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.divinput 
+{
+	display: flex;
+	flex-direction: column;
+}
+.divinput2
+{
+	display: flex;
+	flex-direction: column;
+}
