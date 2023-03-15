@@ -35,6 +35,18 @@ useFetcher()
 const eventButtonObjet = document.querySelector('#button-portfolio-1')
 eventButtonObjet.addEventListener('click', function (){
     document.querySelector('.gallery').innerHTML = "";
+    const boutonVert = document.querySelectorAll(".button-portfolio")
+    for (let i = 0 ; i< boutonVert.length ; i++)
+    {
+        boutonVert[i].classList.add("button-portfolio-green")
+        if (boutonVert[i] !== boutonVert[1])
+        {
+            boutonVert[i].classList.remove("button-portfolio-green")
+        }
+    }
+        /*const myArray = boutonVert[1];
+        myArray.classList.add("button-portfolio-green")*/
+
         let dataFiltered = savedData.filter(function(savedData)
         {
             return savedData.categoryId ==1
@@ -61,6 +73,15 @@ eventButtonObjet.addEventListener('click', function (){
 const eventButtonAppartement = document.querySelector('#button-portfolio-2')
 eventButtonAppartement.addEventListener('click', function (){
     document.querySelector('.gallery').innerHTML = "";
+    const boutonVert = document.querySelectorAll(".button-portfolio")
+    for (let i = 0 ; i< boutonVert.length ; i++)
+    {
+        boutonVert[i].classList.add("button-portfolio-green")
+        if (boutonVert[i] !== boutonVert[2])
+        {
+            boutonVert[i].classList.remove("button-portfolio-green")
+        }
+    }
 
         let dataFiltered = savedData.filter(function(savedData)
         {
@@ -69,6 +90,7 @@ eventButtonAppartement.addEventListener('click', function (){
         })
     for (let i = 0 ; i <dataFiltered.length ; i++)
     {
+        
         const maGallerie = document.querySelector(".gallery")
         const mafigure = document.createElement("figure")
         const monImage = document.createElement("img")
@@ -87,6 +109,19 @@ eventButtonAppartement.addEventListener('click', function (){
 const eventButtonHotelRestaurant = document.querySelector('#button-portfolio-3')
 eventButtonHotelRestaurant.addEventListener('click', function (){
     document.querySelector('.gallery').innerHTML = "";
+    
+    const boutonVert = document.querySelectorAll(".button-portfolio")
+    for (let i = 0 ; i< boutonVert.length ; i++)
+    {
+        boutonVert[i].classList.add("button-portfolio-green")
+        if (boutonVert[i] !== boutonVert[3])
+        {
+            boutonVert[i].classList.remove("button-portfolio-green")
+        }
+    }
+
+
+
         let dataFiltered = savedData.filter(function(savedData)
         {
             return savedData.categoryId ==3
@@ -94,6 +129,7 @@ eventButtonHotelRestaurant.addEventListener('click', function (){
         })
     for (let i = 0 ; i <dataFiltered.length ; i++)
     {
+        
         const maGallerie = document.querySelector(".gallery")
         const mafigure = document.createElement("figure")
         const monImage = document.createElement("img")
@@ -113,6 +149,15 @@ eventButtonHotelRestaurant.addEventListener('click', function (){
 const eventButtonTous = document.querySelector('.button-portfolio')
 eventButtonTous.addEventListener('click', function (){
     document.querySelector('.gallery').innerHTML = "";
+    const boutonVert = document.querySelectorAll(".button-portfolio")
+    for (let i = 0 ; i< boutonVert.length ; i++)
+    {
+        boutonVert[i].classList.add("button-portfolio-green")
+        if (boutonVert[i] !== boutonVert[0])
+        {
+            boutonVert[i].classList.remove("button-portfolio-green")
+        }
+    }
     useFetcher()
 })
 

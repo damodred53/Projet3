@@ -4,10 +4,15 @@ const monLabel2 = document.createElement('label');
 const inputText2 = document.createElement('input');
 const monButton = document.createElement('button');
 const monParagraphe = document.createElement('p');
-const monTitre = document.createElement('h2')
+const monTitre = document.createElement('h2');
 const monForm = document.createElement('form');
-const divForm1 = document.createElement('div')
-const divForm2 = document.createElement('div')
+const divForm1 = document.createElement('div');
+const divForm2 = document.createElement('div');
+
+//en cas d'erreur //
+const paragrapheError = document.createElement('p');
+paragrapheError.innerHTML = "Le mot de passe ou le login est inccorrect, veuillez reessayer.";
+paragrapheError.id="message_erreur";
 
 
 
@@ -30,6 +35,7 @@ document.querySelector('#madiv').appendChild(monParagraphe);
 monForm.appendChild(monTitre);
 monForm.appendChild(divForm1);
 monForm.appendChild(divForm2);
+monForm.appendChild(paragrapheError);
 monForm.appendChild(monButton);
 
 divForm1.appendChild(monLabel).innerHTML='E-mail';
@@ -48,19 +54,39 @@ async function ajoutProjet (){
     formulaireProjet.addEventListener('submit', async function(event){
         event.preventDefault();
         console.log('click');
-        const newProjet = {
+        let newProjet = {
             email: event.target.querySelector('#input1').value,
             password:  event.target.querySelector('#input2').value,
         };
         console.log(newProjet);
-        const chargeUtile = JSON.stringify(newProjet);
+        let chargeUtile = JSON.stringify(newProjet);
         console.log(chargeUtile)
 
-        const verif = fetch("http://localhost:5678/api/users/login", {
+        let verif = await fetch("http://localhost:5678/api/users/login", {
             method: "POST",
             headers: {"Content-Type": "application/json" },
             body : chargeUtile
         });
+       
+        let response = await verif.json();
+        let myToken = response.token
+        //let responseStringified = JSON.stringify(myToken);
+        
+
+        if(verif.ok)
+        {
+            window.location.href='file:///C:/Users/flore/OneDrive/Bureau/projet--3/Projet3/FrontEnd/admin.html'
+        }
+        else
+        {
+            if(paragrapheError.style.display = 'none')
+            {
+                paragrapheError.style.display = "block";
+            }
+        }
     })
 }
-ajoutProjet();
+ajoutProjet()
+;
+
+
