@@ -88,4 +88,4 @@ async function ajoutProjet (){
 ajoutProjet()
 ;
 
-window.localStorage.setItem("idUser", valeurResponse);
+window.localStorage.setItem("clé", "c'est la clé");

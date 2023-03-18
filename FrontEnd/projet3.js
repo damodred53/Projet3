@@ -36,16 +36,14 @@ const eventButtonObjet = document.querySelector('#button-portfolio-1')
 eventButtonObjet.addEventListener('click', function (){
     document.querySelector('.gallery').innerHTML = "";
     const boutonVert = document.querySelectorAll(".button-portfolio")
-    for (let i = 0 ; i< boutonVert.length ; i++)
-    {
-        boutonVert[i].classList.add("button-portfolio-green")
-        if (boutonVert[i] !== boutonVert[1])
+        for (let i = 0 ; i < boutonVert.length ; i++)
         {
-            boutonVert[i].classList.remove("button-portfolio-green")
+            
+            if (boutonVert[i] == buttonPortfolio1)
+            {
+                boutonVert.classList.add("button-portfolio-green")
+            }
         }
-    }
-        /*const myArray = boutonVert[1];
-        myArray.classList.add("button-portfolio-green")*/
 
         let dataFiltered = savedData.filter(function(savedData)
         {
@@ -73,15 +71,7 @@ eventButtonObjet.addEventListener('click', function (){
 const eventButtonAppartement = document.querySelector('#button-portfolio-2')
 eventButtonAppartement.addEventListener('click', function (){
     document.querySelector('.gallery').innerHTML = "";
-    const boutonVert = document.querySelectorAll(".button-portfolio")
-    for (let i = 0 ; i< boutonVert.length ; i++)
-    {
-        boutonVert[i].classList.add("button-portfolio-green")
-        if (boutonVert[i] !== boutonVert[2])
-        {
-            boutonVert[i].classList.remove("button-portfolio-green")
-        }
-    }
+
 
         let dataFiltered = savedData.filter(function(savedData)
         {
@@ -110,18 +100,6 @@ const eventButtonHotelRestaurant = document.querySelector('#button-portfolio-3')
 eventButtonHotelRestaurant.addEventListener('click', function (){
     document.querySelector('.gallery').innerHTML = "";
     
-    const boutonVert = document.querySelectorAll(".button-portfolio")
-    for (let i = 0 ; i< boutonVert.length ; i++)
-    {
-        boutonVert[i].classList.add("button-portfolio-green")
-        if (boutonVert[i] !== boutonVert[3])
-        {
-            boutonVert[i].classList.remove("button-portfolio-green")
-        }
-    }
-
-
-
         let dataFiltered = savedData.filter(function(savedData)
         {
             return savedData.categoryId ==3
@@ -149,46 +127,5 @@ eventButtonHotelRestaurant.addEventListener('click', function (){
 const eventButtonTous = document.querySelector('.button-portfolio')
 eventButtonTous.addEventListener('click', function (){
     document.querySelector('.gallery').innerHTML = "";
-    const boutonVert = document.querySelectorAll(".button-portfolio")
-    for (let i = 0 ; i< boutonVert.length ; i++)
-    {
-        boutonVert[i].classList.add("button-portfolio-green")
-        if (boutonVert[i] !== boutonVert[0])
-        {
-            boutonVert[i].classList.remove("button-portfolio-green")
-        }
-    }
     useFetcher()
 })
-
-
-
-
-
-
-
-
-
-    
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-   

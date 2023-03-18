@@ -24,7 +24,6 @@ header
     display: flex;
     flex-direction: column;
    margin-top: 0%;
-   max-width: none ;
 }
 .modeEdition
 {
@@ -53,7 +52,7 @@ main
     padding-top: 1%
 }
 
-/* partie introduction et présentation */
+ partie introduction et présentation */
 
 .modifier span
 {

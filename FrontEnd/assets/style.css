@@ -103,6 +103,7 @@ li:hover {
 #introduction {
 	display: flex;
 	align-items: center;
+	margin-top: 0px;
 }
 #introduction figure {
 	flex: 1
@@ -327,9 +328,98 @@ main
 	margin-top: 10px;
 }
 
+/* une fois connecté partie admin */
 
 
- 
+.blackbanner
+{
+	background-color: black;
+	width: 100%;
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    display: none;
+    
+}
+.blackbanner p , .blackbanner a 
+{
+    color: white;
+}
 
+.post_admin
+{
+    display: flex;
+    flex-direction: column;
+   margin-top: 0%;
+}
 
+.modeEdition
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}
+#publicationHeader
+{
+    background-color: white;
+    color: black;
+    padding: 1% 2% 1% 2%;
+	border-radius: 60px;
+}
+.underHeader
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+	margin-top: 50px;
+}
 
+.modifier span
+{
+    color: black;
+}
+.modifier
+{
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+   margin-left: 10%;
+   align-items: center;
+   gap: 10px;
+   display: none;
+   
+}
+
+#introduction figure p
+{
+    margin-bottom: 0%;
+}
+
+.mes_projets
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+#portfolio h2
+{
+    margin: 0%;
+}
+#modifierId
+{
+    margin: 0%;
+}
+
+/* en display none tant qu'on est pas admin */
+
+/*.blackbanner, .modifier
+{
+	display: none;
+}*/
