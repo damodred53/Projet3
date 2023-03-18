@@ -4,7 +4,8 @@ const buttonPortfolio1 =document.querySelector("#button-portfolio-1").innerHTML 
 const buttonPortfolio2 =document.querySelector("#button-portfolio-2").innerHTML = "Appartements";
 const buttonPortfolio3 =document.querySelector("#button-portfolio-3").innerHTML = "Hôtels & restaurants";
 
- 
+   
+
 
 let monSet = new Set()
 let savedData = null;
