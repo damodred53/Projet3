@@ -60,36 +60,32 @@ async function ajoutProjet (){
         };
         let chargeUtile = JSON.stringify(newProjet);
 
-        let response = await fetch("http://localhost:5678/api/users/login", {
+        let verif = await fetch("http://localhost:5678/api/users/login", {
             method: "POST",
             headers: {"Content-Type": "application/json" },
             body : chargeUtile
         });
         
-        let valeurResponse = await response.json();
-        console.log(valeurResponse);
-        let token = await valeurResponse.token;
-        console.log(await token)
-        window.localStorage.setItem("tokenUser", token);
-        console.log('prout')
+        const response = await verif.json();
+        let valeurResponse = JSON.stringify(response.token)
+        window.localStorage.setItem("idUser", valeurResponse);
+        
         
 
-        if(window.localStorage.getItem('tokenUser') != null)
+        if(verif.ok)
         {
-            window.location.href='file:///C:/Users/flore/Desktop/test%20projet-3/Projet3/FrontEnd/admin.html'
-            
+            window.location.href='file:///C:/Users/flore/OneDrive/Bureau/projet--3/Projet3/FrontEnd/admin.html'
         }
-        
-        /*else
+        else
         {
             if(paragrapheError.style.display = 'none')
             {
                 paragrapheError.style.display = "block";
             }
-        }*/
+        }
     })
 }
 ajoutProjet()
 ;
 
-
+window.localStorage.setItem("clé", "c'est la clé");
