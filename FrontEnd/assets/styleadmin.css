@@ -1,6 +1,6 @@
 /* Modification page admin */
 
-.blackbanner
+/*.blackbanner
 {
 	background-color: black;
 	width: 100%;
@@ -54,7 +54,7 @@ main
 
  partie introduction et présentation */
 
-.modifier span
+/*.modifier span
 {
     color: black;
 }
@@ -91,10 +91,10 @@ main
 
 /* espace dynamique */
 
-.button-portfolio
+/*.button-portfolio
 {
     display: none;
-}
+}*/
 
 
 

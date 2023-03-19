@@ -11,7 +11,7 @@ const divForm2 = document.createElement('div');
 
 //en cas d'erreur //
 const paragrapheError = document.createElement('p');
-paragrapheError.innerHTML = "Le mot de passe ou le login est inccorrect, veuillez reessayer.";
+paragrapheError.innerHTML = "Erreur dans l’identifiant ou le mot de passe";
 paragrapheError.id="message_erreur";
 
 
@@ -70,23 +70,23 @@ async function ajoutProjet (){
         console.log(valeurResponse);
         let token = await valeurResponse.token;
         console.log(await token)
-        window.localStorage.setItem("tokenUser", token);
-        console.log('prout')
+        sessionStorage.setItem("tokenUser", token);
+       
         
 
-        if(window.localStorage.getItem('tokenUser') != null)
+        if(token != null)
         {
-            window.location.href='file:///C:/Users/flore/Desktop/test%20projet-3/Projet3/FrontEnd/admin.html'
+            window.location.href='file:///C:/Users/flore/Desktop/test_projet-3/Projet3/FrontEnd/index.html'
+            console.log('oui oui !!')
             
         }
-        
-        /*else
+        else
         {
             if(paragrapheError.style.display = 'none')
             {
                 paragrapheError.style.display = "block";
             }
-        }*/
+        }
     })
 }
 ajoutProjet()

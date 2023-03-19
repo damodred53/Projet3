@@ -11,7 +11,7 @@ const divForm2 = document.createElement('div');
 
 //en cas d'erreur //
 const paragrapheError = document.createElement('p');
-paragrapheError.innerHTML = "Le mot de passe ou le login est inccorrect, veuillez reessayer.";
+paragrapheError.innerHTML = "Erreur dans l’identifiant ou le mot de passe";
 paragrapheError.id="message_erreur";
 
 
@@ -60,21 +60,25 @@ async function ajoutProjet (){
         };
         let chargeUtile = JSON.stringify(newProjet);
 
-        let verif = await fetch("http://localhost:5678/api/users/login", {
+        let response = await fetch("http://localhost:5678/api/users/login", {
             method: "POST",
             headers: {"Content-Type": "application/json" },
             body : chargeUtile
         });
         
-        const response = await verif.json();
-        let valeurResponse = JSON.stringify(response.token)
-        window.localStorage.setItem("idUser", valeurResponse);
-        
+        let valeurResponse = await response.json();
+        console.log(valeurResponse);
+        let token = await valeurResponse.token;
+        console.log(await token)
+        window.localStorage.setItem("tokenUser", token);
+       
         
 
-        if(verif.ok)
+        if(token != null)
         {
-            window.location.href='file:///C:/Users/flore/OneDrive/Bureau/projet--3/Projet3/FrontEnd/admin.html'
+            window.location.href='file:///C:/Users/flore/Desktop/test_projet-3/Projet3/FrontEnd/index.html'
+            console.log('oui oui !!')
+            
         }
         else
         {
@@ -88,4 +92,4 @@ async function ajoutProjet (){
 ajoutProjet()
 ;
 
-window.localStorage.setItem("clé", "c'est la clé");
+

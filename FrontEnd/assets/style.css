@@ -331,44 +331,54 @@ main
 /* une fois connecté partie admin */
 
 
+
+
+
+/* dynamisation de la page Index  */
+header{
+	display: flex;
+	flex-direction: column;
+	margin-top: 0%;
+}
 .blackbanner
 {
+	height: 60px;
 	background-color: black;
 	width: 100%;
-    height: 60px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    display: none;
-    
+	display: flex;
+	display: none;
 }
-.blackbanner p , .blackbanner a 
+.firstedition , .mylink
 {
-    color: white;
+	color: white;
 }
-
-.post_admin
+.newdiv
 {
-    display: flex;
-    flex-direction: column;
-   margin-top: 0%;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	gap: 20px;
+	align-items: center;
+	height: 100%;
+	
 }
-
-.modeEdition
+.firstblock
 {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 5px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
 }
-#publicationHeader
+.mylink
 {
-    background-color: white;
+	background-color: white;
     color: black;
     padding: 1% 2% 1% 2%;
 	border-radius: 60px;
+}
+.indoorlink
+{
+	font-weight: 600;
 }
 .underHeader
 {
@@ -377,49 +387,38 @@ main
     justify-content: space-between;
 	margin-top: 50px;
 }
-
-.modifier span
-{
-    color: black;
-}
 .modifier
 {
     display: flex;
     flex-direction: row;
-    margin-top: 10px;
+	margin-top: 10px;
    margin-left: 10%;
    align-items: center;
    gap: 10px;
    display: none;
-   
 }
-
-#introduction figure p
+#modifier_2 
 {
-    margin-bottom: 0%;
+	margin-top: 10px;
 }
-
+.material-symbols-outlined
+{
+	color: black;
+}
 .mes_projets
 {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 30px;
-}
-
-#portfolio h2
-{
-    margin: 0%;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	gap: 35px;
 }
 #modifierId
 {
-    margin: 0%;
-}
-
-/* en display none tant qu'on est pas admin */
-
-/*.blackbanner, .modifier
-{
+	margin-left: 0%;
+	margin-bottom: 30px;
+	margin-top: 0px;
+	display: flex;
+	flex-direction: row;
 	display: none;
-}*/
+}
