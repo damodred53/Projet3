@@ -283,7 +283,7 @@ main
 	padding: 3% 15px 3% 3%;
 	border-radius: 60px;
 	font-weight: bold;
-	font-family: syne;
+	font-family: 'syne';
 	background-color: rgba(29, 97, 84, 1);
 	color: white;
 }
@@ -351,6 +351,13 @@ header{
 .firstedition , .mylink
 {
 	color: white;
+}
+.firsticon
+{
+	width: 25px;
+	height: 25px;
+	margin-right: 10px;
+	margin-bottom: 3px;
 }
 .newdiv
 {
@@ -422,3 +429,147 @@ header{
 	flex-direction: row;
 	display: none;
 }
+
+.lien-header
+{
+	padding: 0 10px;
+	font-size: 1.2em;
+}
+
+/* création de la modale */
+
+.overlay
+{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba(0, 0, 0, 0.8);
+	display: none;
+}
+
+.modal
+{
+	position: absolute;
+	top: 660px;
+	left: 580px;
+	width: 755px;
+	height: 840px;
+	background-color: white;
+	border-radius: 10px;
+	display: none;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+
+}
+.cross
+{
+position: absolute;
+top: 30px;
+right: 35px;
+}
+.galeriephoto 
+{
+	font-size: 30px;
+	font-weight: 500;
+	font-family: 'Work sans';
+	margin-bottom: 20px;
+	margin-top: 65px;
+}
+
+.addphoto
+{
+	background-color: rgba(29, 97, 84, 1);
+	color: white;
+	font-weight: bold;
+	font-size: 12px;
+	border: solid 1px rgba(29, 97, 84, 1);
+	padding: 2% 8% 2% 8%;
+	border-radius: 60px;
+	font-family: 'syne';
+	margin-bottom: 30px;
+	font-size: 16px;
+}
+.removeproject
+{
+	color: #D65353;
+	font-family: 'syne';
+	font-weight: normal;
+	margin-bottom: 45px;
+}
+.projectcontainer
+{
+	display: grid;
+	grid-template-rows: auto;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+	row-gap: 3%;
+	column-gap: 3%;
+	justify-content: center;
+	align-content: center;
+	margin-top: 30px;
+	
+}
+.innerdiv
+{
+	width: 100px;
+	height: 150px;
+
+}
+.monimage
+{
+
+	width: 100%;
+	object-fit: fill;
+}
+.monparagraphe
+{
+	margin-top: 0px;
+}
+.innerdiv img{
+	width: 100px;
+	height: 130px;
+}
+.separation
+{
+	background-color: #B3B3B3;
+	height: 1px;
+	width: 75%;
+	margin-top: 10%;
+	margin-bottom: auto;
+}
+
+.innerdiv img.dustbinimage 
+{
+	background-color: black;
+	border-radius: 2px;
+	width: 13px;
+	height: 13px;
+	padding: 5px;
+	/*position: relative;
+	top : 32px;
+	left: 70px;*/
+}
+.linkdelete
+{
+	position: relative;
+	top : 32px;
+	left: 70px;
+	width: 23px;
+	height: 23px;
+	display: inline-block;
+}
+
+.innerdiv img.elargissement 
+{
+	background-color: black;
+	border-radius: 2px;
+	width: 13px;
+	height: 13px;
+	padding: 5px;
+	position: relative;
+	top : 32px;
+	left: 20px;
+}
+

@@ -13,7 +13,7 @@ const divForm2 = document.createElement('div');
 const paragrapheError = document.createElement('p');
 paragrapheError.innerHTML = "Erreur dans l’identifiant ou le mot de passe";
 paragrapheError.id="message_erreur";
-
+// fin de la gestion des cas d'erreur //
 
 
 monForm.classList.add("monformulaire");
@@ -48,12 +48,11 @@ monButton.innerHTML = 'Se connecter';
 monParagraphe.innerHTML = "mot de passe oublié";
 
 document.querySelector('li:nth-child(3)').id='thirdelement';
-
 async function ajoutProjet (){
     const formulaireProjet = document.querySelector('.monformulaire')
     formulaireProjet.addEventListener('submit', async function(event){
         event.preventDefault();
-
+        window.localStorage.removeItem('tokenUser');
         let newProjet = {
             email: event.target.querySelector('#input1').value,
             password:  event.target.querySelector('#input2').value,
@@ -67,18 +66,13 @@ async function ajoutProjet (){
         });
         
         let valeurResponse = await response.json();
-        console.log(valeurResponse);
         let token = await valeurResponse.token;
-        console.log(await token)
-        sessionStorage.setItem("tokenUser", token);
-       
+        localStorage.setItem("tokenUser", token);
         
 
         if(token != null)
         {
             window.location.href='file:///C:/Users/flore/Desktop/test_projet-3/Projet3/FrontEnd/index.html'
-            console.log('oui oui !!')
-            
         }
         else
         {
@@ -91,5 +85,4 @@ async function ajoutProjet (){
 }
 ajoutProjet()
 ;
-
 
