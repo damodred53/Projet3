@@ -21,6 +21,7 @@ inputText.classList.add('moninput');
 inputText2.classList.add('moninput');
 inputText.id='input1';
 inputText2.id='input2';
+inputText2.setAttribute('type', 'password');
 divForm1.classList.add('divinput');
 divForm2.classList.add('divinput2');
 monTitre.classList.add('log_in');
