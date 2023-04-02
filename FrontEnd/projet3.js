@@ -6,6 +6,7 @@ async function useFetcher () {
 const response = await fetch("http://localhost:5678/api/works")
 savedData = await response.json()
     {
+        console.log(savedData)
         for (let i =0; i<savedData.length ; i++)
     {
         const maGallerie = document.querySelector(".gallery")
@@ -13,6 +14,7 @@ savedData = await response.json()
         const monImage = document.createElement("img")
         const maCaption = document.createElement("p")
         monImage.src = savedData[i].imageUrl
+        mafigure.id=savedData[i].id
         maCaption.innerHTML = savedData[i].title
         maGallerie.appendChild(mafigure)
         mafigure.appendChild(monImage)
@@ -37,6 +39,8 @@ const buttonPortfolio3 =document.querySelector("#button-portfolio-3").innerHTML 
 const eventButtonObjet = document.querySelector('#button-portfolio-1')
 eventButtonObjet.addEventListener('click', function (){
     document.querySelector('.gallery').innerHTML = "";
+    
+
         let dataFiltered = savedData.filter(function(savedData)
         {
             return savedData.categoryId ==1
@@ -59,6 +63,7 @@ eventButtonObjet.addEventListener('click', function (){
 const eventButtonAppartement = document.querySelector('#button-portfolio-2')
 eventButtonAppartement.addEventListener('click', function (){
     document.querySelector('.gallery').innerHTML = "";
+    
         let dataFiltered = savedData.filter(function(savedData)
         {
             return savedData.categoryId ==2   
@@ -239,10 +244,13 @@ document.querySelector('.modal').appendChild(eraseProject);
 
  // fonction permettant l'intégration de la page dynamique de la modale //
 
-function fetcher() {
- 
+async function fetcher() {
+ projectContainer.innerHTML="";
+ const fetch2 = await fetch("http://localhost:5678/api/works")
+ savedData = await fetch2.json()
+
     for (let i =0; i<savedData.length ; i++)
-    {
+    { 
         let innerDiv = document.createElement('div');
         let monImage = document.createElement('img');
         let monParagraphe = document.createElement('p');
@@ -255,8 +263,7 @@ function fetcher() {
         elargissement.classList.add('elargissement');
         dustBinImage.classList.add('dustbinimage');
 
-        identifiant = innerDiv.id=i+1;
-        
+        identifiant = innerDiv.id= savedData[i].id;
         monImage.src = savedData[i].imageUrl;
         monParagraphe.innerHTML = 'éditer';
         elargissement.src = 'assets/icons/élargissement.png';
@@ -291,7 +298,15 @@ function fetcher() {
                 if (response.ok) {
                     console.log('Données envoyées avec succès !');
                         innerDiv.remove();
-                        document.querySelector('.mafigure').remove();
+                        const figure = document.querySelectorAll('.mafigure')
+                    for (let i = 0 ; i<figure.length; i++)
+                    {
+                        if (figure[i].id == id)
+                        {
+                            figure[i].remove()
+                        }
+                    }
+                        
                         
                 } else {
                     console.error('Erreur lors de l\'envoi des données : ', response.status);
@@ -357,11 +372,11 @@ function fetcher() {
         formTextTitre2.id = "formselectcategory";
         const optionVoid = document.createElement('option');
         const option1 = document.createElement('option');
-        option1.innerHTML = 'Catégorie 1 : Objets';
+        option1.innerHTML = 'Objets';
         const option2 = document.createElement('option');
-        option2.innerHTML = 'Catégorie 2 : Appartements';
+        option2.innerHTML = 'Appartements';
         const option3 = document.createElement('option');
-        option3.innerHTML = 'Catégorie 3 : Hôtels & restaurants';
+        option3.innerHTML = 'Bar & restaurants';
 
         // ajout de la partie intégration d'une image //
         const ajoutPhoto = document.createElement('div');
@@ -398,6 +413,7 @@ function fetcher() {
         // ajout du bouton de validation //
         validateButton = document.createElement('button');
         validateButton.classList.add('validatebutton');
+        validateButton.setAttribute('type', 'submit');
         validateButton.innerHTML = "Valider";
 
        
@@ -458,7 +474,7 @@ function fetcher() {
 
         // validation d'un nouveau projet via le formulaire //
 
-        document.querySelector('.validatebutton').addEventListener('submit', (event) =>{
+        document.querySelector('.validatebutton').addEventListener('click', (event) =>{
             event.preventDefault();
            console.log(document.querySelector('.formtexttitre').value);
            console.log(document.querySelector('.formselectcategory').value);
