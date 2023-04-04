@@ -12,6 +12,7 @@ savedData = await response.json()
         const maGallerie = document.querySelector(".gallery")
         const mafigure = document.createElement("figure")
         const monImage = document.createElement("img")
+        monImage.classList.add('imagefigure');
         const maCaption = document.createElement("p")
         monImage.src = savedData[i].imageUrl
         mafigure.id=savedData[i].id
@@ -39,8 +40,10 @@ const buttonPortfolio3 =document.querySelector("#button-portfolio-3").innerHTML 
 const eventButtonObjet = document.querySelector('#button-portfolio-1')
 eventButtonObjet.addEventListener('click', function (){
     document.querySelector('.gallery').innerHTML = "";
-    
-
+    eventButtonObjet.id="button-portfolio-green";
+    eventButtonAppartement.removeAttribute("id");
+    eventButtonHotelRestaurant.removeAttribute("id");
+    eventButtonTous.removeAttribute("id")
         let dataFiltered = savedData.filter(function(savedData)
         {
             return savedData.categoryId ==1
@@ -63,7 +66,11 @@ eventButtonObjet.addEventListener('click', function (){
 const eventButtonAppartement = document.querySelector('#button-portfolio-2')
 eventButtonAppartement.addEventListener('click', function (){
     document.querySelector('.gallery').innerHTML = "";
-    
+    eventButtonObjet.removeAttribute("id");
+    eventButtonAppartement.id="button-portfolio-green";
+    eventButtonHotelRestaurant.removeAttribute("id");
+    eventButtonTous.removeAttribute("id")
+
         let dataFiltered = savedData.filter(function(savedData)
         {
             return savedData.categoryId ==2   
@@ -85,6 +92,10 @@ eventButtonAppartement.addEventListener('click', function (){
 const eventButtonHotelRestaurant = document.querySelector('#button-portfolio-3')
 eventButtonHotelRestaurant.addEventListener('click', function (){
     document.querySelector('.gallery').innerHTML = "";
+    eventButtonObjet.removeAttribute("id");
+    eventButtonAppartement.removeAttribute("id");
+    eventButtonHotelRestaurant.id="button-portfolio-green";
+    eventButtonTous.removeAttribute("id")
         let dataFiltered = savedData.filter(function(savedData)
         {
             return savedData.categoryId ==3   
@@ -108,6 +119,10 @@ eventButtonHotelRestaurant.addEventListener('click', function (){
 const eventButtonTous = document.querySelector('.button-portfolio')
 eventButtonTous.addEventListener('click', function (){
     document.querySelector('.gallery').innerHTML = "";
+    eventButtonTous.id='button-portfolio-green';
+    eventButtonObjet.removeAttribute("id");
+    eventButtonAppartement.removeAttribute("id");
+    eventButtonHotelRestaurant.removeAttribute("id");
     useFetcher()
 })
 
@@ -450,52 +465,130 @@ async function fetcher() {
         document.querySelector('.formselectcategory').appendChild(option3);
         
         // affichage de l'image téléchargée //
-
+        let file
+        let imageUpload
+        let newReader = new FileReader();
         let pictureDisplayed = document.querySelector('.photosender').addEventListener('change', function(event){
-            let newReader = new FileReader;
-            let file = event.target.files;
+            
+            file = event.target.files;
+           
+            const lecture = newReader.readAsDataURL(file[0])
+            
             let fileLength = file.length;
             if (fileLength != 0)
             {
-                let imageUpload = document.createElement('img');
+                imageUpload = document.createElement('img');
                 imageUpload.classList.add('imageupload');
                 const imageSource = URL.createObjectURL(file[0]);
+                console.log(file[0])
+                console.log(imageSource)
                 imageUpload.src = imageSource;
+                
                 if (imageUpload.src != null)
                 {
                     document.querySelector('.ajoutphoto').innerHTML='';
                     document.querySelector('.ajoutphoto').appendChild(imageUpload);
                 }
-                const lecture = newReader.readAsDataURL(file[0]);
-                console.log(newReader);
+                
+                
+                
+               
+                //return newReader
+                
             }
         })
-
-
+        
+        
         // validation d'un nouveau projet via le formulaire //
 
-        document.querySelector('.validatebutton').addEventListener('click', (event) =>{
+        const validate = document.querySelector('.validatebutton').addEventListener('click', function (event){
             event.preventDefault();
-           console.log(document.querySelector('.formtexttitre').value);
-           console.log(document.querySelector('.formselectcategory').value);
+            
+            (file[0])
+              let imageStock = newReader.result
+              
+           let titleForm = document.querySelector('.formtexttitre').value;
+           let categoryForm = document.querySelector('.formselectcategory').value;
+           let imageToUpload = file[0];
+           //imageToUpload.setAttribute('src', imageStock);
+           if (categoryForm == 'Objets')
+           {
+            categoryForm = 1;
+           }
+           else if (categoryForm == 'Appartements')
+           {
+            categoryForm = 2;
+           }
+           else
+           {
+            categoryForm = 3;
+           }
+           //categoryForm = parseInt(categoryForm)
+           console.log(imageToUpload);
+           console.log(categoryForm);
+           console.log(titleForm);
+           let formData = new FormData();
+           formData.append('image', imageToUpload);
+           formData.append('title', titleForm);
+           formData.append('category', categoryForm);
+           
+        postData();
+           async function postData () {
+            const itemGetter = window.localStorage.getItem('tokenUser');
+            //console.log(itemGetter);
+            if (itemGetter != null){
+            const sending = await fetch("http://localhost:5678/api/works", 
+            {
+                method: "POST",
+                body: formData,
+                headers: {
+                    Accept: "application/json",
+                    Authorization: `Bearer ${itemGetter}`,
+                    //"Content-Type": "multipart/form-data"
+                }   
+            }
+            )
+        let response  = sending.ok
+        if (sending.ok)
+        {
+            document.querySelector('.gallery').innerHTML='';
+            useFetcher();
+        }
+    }};     
         })
+
+
+
+    })
+        
 
 
         
-    })
+    
     
     
 /*async function postData () {
+    const itemGetter = window.localStorage.getItem('tokenUser');
+    
     const sending = await fetch("http://localhost:5678/api/works", 
     {
         method: "POST",
+        body: formData,
         headers: {
             Accept: "application/json",
-            Authorization: `Bearer ${fetchToken}`
-        },
-        body: document.querySelector('.formtexttitre').value
-    });
+            Authorization: `Bearer ${itemGetter}`,
+            "Content-Type": "multipart/form-data"
+        }
+        .then(response => {
+            console.log(response);
+            if (response.ok)
+            {
+                console.log('youpi !!');
+            }
+        
+    })
     
+}
+    )
 }*/
-
   

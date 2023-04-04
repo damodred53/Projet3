@@ -221,7 +221,7 @@ footer nav ul {
 	background-color: rgba(29, 97, 84, 1);
 	color: white;
 }
-.button-portfolio-green
+#button-portfolio-green
 {
 	border: solid 1px rgba(29, 97, 84, 1);
 	background-color: rgba(29, 97, 84, 1);
@@ -236,6 +236,16 @@ footer nav ul {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+}
+.mafigure
+{
+ max-width: 345px;
+ max-height: 476px;
+}
+.imagefigure
+{
+	max-width: 345px;
+	max-height: 456px;
 }
 
 /*page de connexion */
