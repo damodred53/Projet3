@@ -246,6 +246,8 @@ document.querySelector('.modal').appendChild(eraseProject);
  {
     document.querySelector('.overlay').style.display = 'none';
     document.querySelector('.modal').style.display = 'none';
+    document.querySelector('.newdiv2').style.display = 'none';
+
  })
 
  // fermer la modale en cliquant hors du cadre //
@@ -330,6 +332,7 @@ async function fetcher() {
         )}
 })
     }}
+    
 
     const toFormAddPhoto = document.querySelector('.addphoto').addEventListener('click', function()
     {
@@ -341,6 +344,10 @@ async function fetcher() {
         document.querySelector('.addphoto').style.display = 'none';
         document.querySelector('.removeproject').style.display = 'none';
 
+        if (document.querySelector('.newdiv2'))
+        {
+            document.querySelector('.newdiv2').remove()
+        }
         // intégration de la page permettant l'ajout de projet //
 
         // ajout du titre de la page //
@@ -415,9 +422,9 @@ async function fetcher() {
         addPhotoParagraphe.innerHTML="jpg, png : 4mo max";
 
         // création d'une nouvelle interface pour la deuxième modale //
+        
         const newDiv2 = document.createElement('div');
         newDiv2.classList.add('newdiv2');
-
 
 
         // ajout de la barre grise entre la catégorie et le bouton valider //
@@ -432,9 +439,8 @@ async function fetcher() {
         validateButton.innerHTML = "Valider";
 
        
-        document.querySelector('.modal').appendChild(newDiv2);
         
-     
+        document.querySelector('.modal').appendChild(newDiv2);
         document.querySelector('.newdiv2').appendChild(formAddProject);
         document.querySelector('.formaddproject').appendChild(divAjoutPhoto);
         //document.querySelector('.formaddproject').appendChild(photoSender);
@@ -463,6 +469,9 @@ async function fetcher() {
         document.querySelector('.formselectcategory').appendChild(option1);
         document.querySelector('.formselectcategory').appendChild(option2);
         document.querySelector('.formselectcategory').appendChild(option3);
+
+        
+        
         
         // affichage de l'image téléchargée //
         let file
@@ -488,13 +497,7 @@ async function fetcher() {
                 {
                     document.querySelector('.ajoutphoto').innerHTML='';
                     document.querySelector('.ajoutphoto').appendChild(imageUpload);
-                }
-                
-                
-                
-               
-                //return newReader
-                
+                } 
             }
         })
         
@@ -551,44 +554,27 @@ async function fetcher() {
         let response  = sending.ok
         if (sending.ok)
         {
+
+           imageUpload.remove();
             document.querySelector('.gallery').innerHTML='';
             useFetcher();
+            document.querySelector('.newdiv2').style.display='none';
+            document.querySelector('.modal').removeAttribute("id");
+            document.querySelector('.modal').style.display='none';
+            document.querySelector('.overlay').style.display = 'none';
+            
+        document.querySelector('.galeriephoto').style.display = 'flex';
+        document.querySelector('.projectcontainer').style.display = 'grid';
+        document.querySelector('.separation').style.display = 'flex';
+        document.querySelector('.addphoto').style.display = 'flex';
+        document.querySelector('.removeproject').style.display = 'flex';
+            
         }
     }};     
         })
 
 
-
-    })
-        
-
-
-        
-    
-    
-    
-/*async function postData () {
-    const itemGetter = window.localStorage.getItem('tokenUser');
-    
-    const sending = await fetch("http://localhost:5678/api/works", 
-    {
-        method: "POST",
-        body: formData,
-        headers: {
-            Accept: "application/json",
-            Authorization: `Bearer ${itemGetter}`,
-            "Content-Type": "multipart/form-data"
-        }
-        .then(response => {
-            console.log(response);
-            if (response.ok)
-            {
-                console.log('youpi !!');
-            }
-        
-    })
-    
-}
+    }
     )
-}*/
+
   
