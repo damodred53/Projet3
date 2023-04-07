@@ -6,9 +6,24 @@ async function useFetcher () {
 const response = await fetch("http://localhost:5678/api/works")
 savedData = await response.json()
     {
-        console.log(savedData)
-        for (let i =0; i<savedData.length ; i++)
-    {
+        savedData.forEach(({imageUrl, id, title}) => {
+
+        const maGallerie = document.querySelector(".gallery")
+        const mafigure = document.createElement("figure")
+        const monImage = document.createElement("img")
+        monImage.classList.add('imagefigure');
+        const maCaption = document.createElement("p")
+        monImage.src = imageUrl
+        mafigure.id=id
+        maCaption.innerHTML = title
+        maGallerie.appendChild(mafigure)
+        mafigure.appendChild(monImage)
+        mafigure.appendChild(maCaption)  
+        mafigure.classList.add('mafigure');
+        }
+    )}}      
+        ;/*for (let i =0; i<savedData.length ; i++)*/
+    /*{
         const maGallerie = document.querySelector(".gallery")
         const mafigure = document.createElement("figure")
         const monImage = document.createElement("img")
@@ -23,8 +38,9 @@ savedData = await response.json()
         mafigure.classList.add('mafigure');
     }
     }
-}
+}*/
 useFetcher()
+
 
 
 
@@ -126,10 +142,8 @@ eventButtonTous.addEventListener('click', function (){
     useFetcher()
 })
 
-
-
-
 // intégration des éléments une fois l'utilisateur connecté en admin //
+
 const newDiv = document.createElement('div');
 const firstBlock = document.createElement('div');
 const firstIcon = document.createElement('img');
@@ -149,7 +163,7 @@ firstIcon.style.color="white";
 firstEdition.innerText = "Mode édition";
 indoorLink.innerHTML = "publier les changements";
 
-//rattachement des éléments de la page admin//
+// intégration des nouveaux éléments propre à la page admin //
 
 document.querySelector('.blackbanner').appendChild(newDiv);
 document.querySelector('.newdiv').appendChild(firstBlock);
@@ -200,14 +214,14 @@ document.querySelector('#modifier_2').addEventListener('click', function (){
 // création de ma modale de manière dynamique //
 
 // icone de la croix //
-const linkCross = document.createElement('a')
+const linkCross = document.createElement('a');
 linkCross.classList.add('linkcross');
 const cross = document.createElement('img');
 cross.classList.add('cross');
 cross.src=('./assets/images/Vector.png');
 document.querySelector('.modal').appendChild(linkCross);
 document.querySelector('.linkcross').appendChild(cross);
-  
+
 // titre de la galerie //
 const galeriePhoto = document.createElement('p');
 galeriePhoto.classList.add('galeriephoto');
@@ -229,10 +243,7 @@ const buttonAddPhoto = document.createElement('button');
 buttonAddPhoto.innerHTML = "Ajouter une photo";
 buttonAddPhoto.classList.add('addphoto');
 document.querySelector('.modal').appendChild(buttonAddPhoto);
-document.querySelector('.addphoto').addEventListener('click', function(){
-    const modificationButton = document.querySelector('.modal');
-    modificationButton.id = "heightmodal";
-})
+
 
 // création du lien pour supprimer un projet //
 const eraseProject = document.createElement('a');
@@ -242,22 +253,20 @@ document.querySelector('.modal').appendChild(eraseProject);
 
  // fermer la modale avec la croix //
    
- document.querySelector('.linkcross').addEventListener('click', function ()
- {
+document.querySelector('.linkcross').addEventListener('click', function ()
+{
     document.querySelector('.overlay').style.display = 'none';
     document.querySelector('.modal').style.display = 'none';
     document.querySelector('.newdiv2').style.display = 'none';
-
- })
+})
 
  // fermer la modale en cliquant hors du cadre //
 
- document.querySelector('.overlay').addEventListener('click', function ()
- {
+document.querySelector('.overlay').addEventListener('click', function ()
+{
     document.querySelector('.overlay').style.display = 'none';
     document.querySelector('.modal').style.display = 'none';
- })
-
+})
 
  // fonction permettant l'intégration de la page dynamique de la modale //
 
@@ -268,6 +277,7 @@ async function fetcher() {
 
     for (let i =0; i<savedData.length ; i++)
     { 
+        // création des éléments //
         let innerDiv = document.createElement('div');
         let monImage = document.createElement('img');
         let monParagraphe = document.createElement('p');
@@ -275,18 +285,20 @@ async function fetcher() {
         let elargissement = document.createElement('img');
         let dustBinImage = document.createElement('img');
 
+        // ajout des classes //
         innerDiv.classList.add('innerdiv');
         linkDelete.classList.add('linkdelete');
         elargissement.classList.add('elargissement');
         dustBinImage.classList.add('dustbinimage');
 
+        // ajout du contenu des différents éléments //
         identifiant = innerDiv.id= savedData[i].id;
         monImage.src = savedData[i].imageUrl;
         monParagraphe.innerHTML = 'éditer';
         elargissement.src = 'assets/icons/élargissement.png';
         dustBinImage.src = "assets/icons/dustbin.png";
-        
 
+        // rattachement des éléments au DOM //
         document.querySelector('.projectcontainer').appendChild(innerDiv);
         innerDiv.appendChild(linkDelete);
         innerDiv.appendChild(elargissement);
@@ -294,12 +306,10 @@ async function fetcher() {
         innerDiv.appendChild(monParagraphe);
         linkDelete.appendChild(dustBinImage);
 
-
         linkDelete.addEventListener('click', function()
         {
             const fetchToken = localStorage.getItem('tokenUser');
             if (fetchToken != null)
-            console.log(fetchToken)
         {
             let id = savedData[i].id
            const response = fetch(`http://localhost:5678/api/works/${id}`,
@@ -311,9 +321,7 @@ async function fetcher() {
                 }
             })
             .then(response => {
-                console.log(response);
                 if (response.ok) {
-                    console.log('Données envoyées avec succès !');
                         innerDiv.remove();
                         const figure = document.querySelectorAll('.mafigure')
                     for (let i = 0 ; i<figure.length; i++)
@@ -322,12 +330,8 @@ async function fetcher() {
                         {
                             figure[i].remove()
                         }
-                    }
-                        
-                        
-                } else {
-                    console.error('Erreur lors de l\'envoi des données : ', response.status);
-                }
+                    }       
+                } 
         }
         )}
 })
@@ -336,7 +340,7 @@ async function fetcher() {
 
     const toFormAddPhoto = document.querySelector('.addphoto').addEventListener('click', function()
     {
-        // suppression des parties de la modale précédente //
+        // suppression des éléments de la modale précédente //
 
         document.querySelector('.galeriephoto').style.display = 'none';
         document.querySelector('.projectcontainer').style.display = 'none';
@@ -344,11 +348,15 @@ async function fetcher() {
         document.querySelector('.addphoto').style.display = 'none';
         document.querySelector('.removeproject').style.display = 'none';
 
+        // raffraichissement si ce n'est pas la première fois que nous ouvrons cette seconde modale //
         if (document.querySelector('.newdiv2'))
         {
             document.querySelector('.newdiv2').remove()
         }
+
         // intégration de la page permettant l'ajout de projet //
+        const modificationButton = document.querySelector('.modal');
+        modificationButton.id = "heightmodal";
 
         // ajout du titre de la page //
         const photoSender = document.createElement('input');
@@ -356,12 +364,20 @@ async function fetcher() {
         photoSender.setAttribute('type', 'file');
         photoSender.setAttribute('required', "");
 
+        // icone de la flèche retour //
+        const linkArrowReturn = document.createElement('a');
+        const arrowReturn = document.createElement('img');
+        linkArrowReturn.classList.add('linkarrowreturn');
+        arrowReturn.classList.add('arrowreturn');
+        arrowReturn.src=('./assets/icons/Arrow_Back.png');
+        linkArrowReturn.style.display='flex';
+
+        // ajout de la div où l'utilisateur déposera son document //
         const divAjoutPhoto = document.createElement('div');
         divAjoutPhoto.classList.add('divAjoutPhoto');
         divAjoutPhoto.innerHTML = "Ajout photo";
 
         // ajout du formulaire //
-
         const formAddProject = document.createElement('form');
         formAddProject.classList.add('formaddproject');
 
@@ -390,7 +406,6 @@ async function fetcher() {
         const formTextTitre2 = document.createElement('select');
         formTextTitre2.classList.add('formselectcategory'); 
         formTextTitre2.setAttribute('required', "");
-        //formTextTitre2.setAttribute('type', 'select');
         formTextTitre2.id = "formselectcategory";
         const optionVoid = document.createElement('option');
         const option1 = document.createElement('option');
@@ -412,7 +427,6 @@ async function fetcher() {
         // ajout du lien "Ajouter photo" //
         const addPhotoLink = document.createElement('a');
         addPhotoLink.classList.add('addphotolink');
-        //addPhotoLink.innerHTML = " + Ajouter photo ";
         const overParagraphe = document.createElement('p')
         overParagraphe.innerHTML = " + Ajouter photo ";
 
@@ -422,7 +436,6 @@ async function fetcher() {
         addPhotoParagraphe.innerHTML="jpg, png : 4mo max";
 
         // création d'une nouvelle interface pour la deuxième modale //
-        
         const newDiv2 = document.createElement('div');
         newDiv2.classList.add('newdiv2');
 
@@ -435,21 +448,38 @@ async function fetcher() {
         // ajout du bouton de validation //
         validateButton = document.createElement('button');
         validateButton.classList.add('validatebutton');
-        validateButton.setAttribute('type', 'submit');
+        //validateButton.setAttribute('type', 'submit');
         validateButton.innerHTML = "Valider";
 
-       
+        // intégration des messages d'erreurs //
+        const erreurphoto = document.createElement('p');
+        erreurphoto.classList.add('erreurphoto');
+        erreurphoto.innerHTML='veuillez ajouter une photo';
+
+        const erreurTitre = document.createElement('p');
+        erreurTitre.classList.add('erreurtitre');
+        erreurTitre.innerHTML='veuillez ajouter un titre';
+
+        const erreurCategory = document.createElement('p');
+        erreurCategory.classList.add('erreurcategory');
+        erreurCategory.innerHTML='veuillez ajouter une catégorie';
+
+
         
         document.querySelector('.modal').appendChild(newDiv2);
         document.querySelector('.newdiv2').appendChild(formAddProject);
         document.querySelector('.formaddproject').appendChild(divAjoutPhoto);
-        //document.querySelector('.formaddproject').appendChild(photoSender);
         document.querySelector('.formaddproject').appendChild(ajoutPhoto);
+        document.querySelector('.formaddproject').appendChild(erreurphoto);
         document.querySelector('.formaddproject').appendChild(divTitre);
+        document.querySelector('.formaddproject').appendChild(erreurTitre);
         document.querySelector('.formaddproject').appendChild(divcategorie);
+        document.querySelector('.formaddproject').appendChild(erreurCategory);
         document.querySelector('.formaddproject').appendChild(greyBar);
         document.querySelector('.formaddproject').appendChild(validateButton);
 
+        document.querySelector('.formaddproject').appendChild(linkArrowReturn);
+        document.querySelector('.linkarrowreturn').appendChild(arrowReturn);
         
 
         document.querySelector('.ajoutphoto').appendChild(imageLandscape);
@@ -470,12 +500,26 @@ async function fetcher() {
         document.querySelector('.formselectcategory').appendChild(option2);
         document.querySelector('.formselectcategory').appendChild(option3);
 
-        
+        document.querySelector('.linkarrowreturn').addEventListener('click', function ()
+        {
+            document.querySelector('.newdiv2').style.display = 'none';
+            document.querySelector('.modal').removeAttribute('id');
+            document.querySelector('.linkarrowreturn').style.display='none';
+
+            document.querySelector('.galeriephoto').style.display = 'flex';
+            document.querySelector('.projectcontainer').style.display = 'grid';
+            document.querySelector('.separation').style.display = 'flex';
+            document.querySelector('.addphoto').style.display = 'flex';
+            document.querySelector('.removeproject').style.display = 'flex';
+        })
         
         
         // affichage de l'image téléchargée //
         let file
         let imageUpload
+        let imageSource
+        let fileLength
+        let imageToUpload
         let newReader = new FileReader();
         let pictureDisplayed = document.querySelector('.photosender').addEventListener('change', function(event){
             
@@ -483,14 +527,12 @@ async function fetcher() {
            
             const lecture = newReader.readAsDataURL(file[0])
             
-            let fileLength = file.length;
+            fileLength = file.length;
             if (fileLength != 0)
             {
                 imageUpload = document.createElement('img');
                 imageUpload.classList.add('imageupload');
-                const imageSource = URL.createObjectURL(file[0]);
-                console.log(file[0])
-                console.log(imageSource)
+                imageSource = URL.createObjectURL(file[0]);
                 imageUpload.src = imageSource;
                 
                 if (imageUpload.src != null)
@@ -507,39 +549,68 @@ async function fetcher() {
         const validate = document.querySelector('.validatebutton').addEventListener('click', function (event){
             event.preventDefault();
             
-            (file[0])
-              let imageStock = newReader.result
-              
-           let titleForm = document.querySelector('.formtexttitre').value;
+            let imageStock = newReader.result
+
+            // vérification de la partie titre //
+             
+            let titleForm = document.querySelector('.formtexttitre').value;
+
+            if(titleForm.length < 1)
+            {
+                document.querySelector('.erreurtitre').style.display='flex';
+            }
+            else{
+                document.querySelector('.erreurtitre').style.display='none';
+            }
+            // intégration et vérification de l'élément category pour le formulaire //
+
            let categoryForm = document.querySelector('.formselectcategory').value;
-           let imageToUpload = file[0];
-           //imageToUpload.setAttribute('src', imageStock);
+           
            if (categoryForm == 'Objets')
            {
             categoryForm = 1;
+            document.querySelector('.erreurcategory').style.display='none';
            }
            else if (categoryForm == 'Appartements')
            {
             categoryForm = 2;
+            document.querySelector('.erreurcategory').style.display='none';
+           }
+           else if (categoryForm == 'Bar & restaurants')
+           {
+            categoryForm = 3;
+            document.querySelector('.erreurcategory').style.display='none';
            }
            else
            {
-            categoryForm = 3;
+            categoryForm = null;
+            document.querySelector('.erreurcategory').style.display='flex';
            }
-           //categoryForm = parseInt(categoryForm)
-           console.log(imageToUpload);
-           console.log(categoryForm);
-           console.log(titleForm);
+
+           // vérification du remplissage de l'élément photo //
+           try{
+           imageToUpload = file[0];
+           document.querySelector('.erreurphoto').style.display='none';
+           }
+           catch
+           {
+            const catchError = document.querySelector('.erreurphoto').style.display='flex';
+            return catchError
+           }
+
            let formData = new FormData();
            formData.append('image', imageToUpload);
            formData.append('title', titleForm);
            formData.append('category', categoryForm);
+
+           
+
            
         postData();
            async function postData () {
             const itemGetter = window.localStorage.getItem('tokenUser');
-            //console.log(itemGetter);
-            if (itemGetter != null){
+            // vérification avant le fetch permettant d'empêcher l'apparition de message d'erreur dans le log du au fetch //
+            if (itemGetter != null && categoryForm !=null && titleForm.length>0){
             const sending = await fetch("http://localhost:5678/api/works", 
             {
                 method: "POST",
@@ -568,9 +639,8 @@ async function fetcher() {
         document.querySelector('.separation').style.display = 'flex';
         document.querySelector('.addphoto').style.display = 'flex';
         document.querySelector('.removeproject').style.display = 'flex';
-            
         }
-    }};     
+           }};     
         })
 
 

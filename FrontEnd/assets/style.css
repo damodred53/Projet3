@@ -476,9 +476,15 @@ header{
 }
 .cross
 {
-position: absolute;
-top: 30px;
-right: 35px;
+	position: absolute;
+	top: 30px;
+	right: 35px;
+}
+.arrowreturn
+{
+	position: absolute;
+	top: 30px;
+	left: 35px;
 }
 .galeriephoto 
 {
@@ -654,6 +660,13 @@ right: 35px;
 	font-weight: 500;
 	font-size: 14px;
 	line-height: 16px;
+}
+
+.erreurtitre, .erreurcategory, .erreurphoto
+{
+	color: red;
+	width: 100%;
+	display: none;
 }
 
 .divtitre
