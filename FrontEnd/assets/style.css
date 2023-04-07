@@ -206,6 +206,7 @@ footer nav ul {
 	margin-left: 25%;
 	margin-bottom: 50px;
 	margin-top: 50px;
+	cursor: pointer;
 }
 .button-portfolio
 {
@@ -296,6 +297,7 @@ main
 	font-family: 'syne';
 	background-color: rgba(29, 97, 84, 1);
 	color: white;
+	cursor: pointer;
 }
 .monparagraphe
 {
@@ -403,6 +405,7 @@ header{
     flex-direction: row;
     justify-content: space-between;
 	margin-top: 50px;
+	cursor: pointer;
 }
 .modifier
 {
@@ -417,6 +420,7 @@ header{
 #modifier_2 
 {
 	margin-top: 10px;
+	cursor: pointer;
 }
 .material-symbols-outlined
 {
@@ -507,6 +511,7 @@ header{
 	font-family: 'syne';
 	margin-bottom: 30px;
 	font-size: 16px;
+	cursor: pointer;
 }
 .removeproject
 {
@@ -563,9 +568,7 @@ header{
 	width: 13px;
 	height: 13px;
 	padding: 5px;
-	/*position: relative;
-	top : 32px;
-	left: 70px;*/
+	cursor: pointer;
 }
 .linkdelete
 {
@@ -660,6 +663,7 @@ header{
 	font-weight: 500;
 	font-size: 14px;
 	line-height: 16px;
+	cursor: pointer;
 }
 
 .erreurtitre, .erreurcategory, .erreurphoto
@@ -691,15 +695,14 @@ header{
 	height: 40px;
 	box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 	border: none;
-	/*margin-top: 2%;*/
+
 }
 .greybar
 {
 	background-color: #B3B3B3;
 	height: 1px;
 	width: 100%;
-	/*margin-top: 10%;*/
-	/*margin-bottom: auto;*/
+
 }
 .validatebutton
 {
@@ -713,7 +716,7 @@ header{
 	font-style: normal;
 	font-size: 14px;
 	line-height: 17px;
-	/*margin-bottom: 55px;*/
+	cursor: pointer;
 }
 
 .newdiv2
