@@ -33,6 +33,7 @@ const buttonPortfolio2 = document.querySelector("#button-portfolio-2").innerHTML
 const buttonPortfolio3 = document.querySelector("#button-portfolio-3").innerHTML = "Hôtels & restaurants";
 
 // intégration des trois boutons de filtrage //
+// bouton de filtre objet //
 
 const eventButtonObjet = document.querySelector('#button-portfolio-1')
 eventButtonObjet.addEventListener('click', function() {
@@ -57,6 +58,7 @@ eventButtonObjet.addEventListener('click', function() {
     }
 })
 
+// bouton de filtre appartement //
 
 const eventButtonAppartement = document.querySelector('#button-portfolio-2')
 eventButtonAppartement.addEventListener('click', function() {
@@ -81,6 +83,8 @@ eventButtonAppartement.addEventListener('click', function() {
         mafigure.appendChild(maCaption)
     }
 })
+
+// bouton de filtre hotel et restaurant //
 
 const eventButtonHotelRestaurant = document.querySelector('#button-portfolio-3')
 eventButtonHotelRestaurant.addEventListener('click', function() {
@@ -108,6 +112,7 @@ eventButtonHotelRestaurant.addEventListener('click', function() {
 // bouton de filtre "tous" rendant visible l'ensemble des projets //
 
 const eventButtonTous = document.querySelector('.button-portfolio')
+eventButtonTous.id='eventbuttontous';
 eventButtonTous.addEventListener('click', function() {
     document.querySelector('.gallery').innerHTML = "";
     eventButtonTous.id = 'button-portfolio-green';
@@ -281,8 +286,9 @@ async function fetcher() {
                         method: 'DELETE',
                         headers: {
                             "Content-Type": "application/json",
-                            "Authorization": `Bearer ${fetchToken}`
-                        }
+                            "Authorization": `Bearer ${fetchToken}`,
+                            "accept":"/"
+                        },
                     })
                     .then(response => {
                         if (response.ok) {
@@ -454,15 +460,14 @@ const toFormAddPhoto = document.querySelector('.addphoto').addEventListener('cli
     document.querySelector('.formselectcategory').appendChild(option2);
     document.querySelector('.formselectcategory').appendChild(option3);
     document.querySelector('.linkarrowreturn').addEventListener('click', function() {
-        document.querySelector('.newdiv2').style.display = 'none';
-        document.querySelector('.modal').removeAttribute('id');
-        document.querySelector('.linkarrowreturn').style.display = 'none';
-
-        document.querySelector('.galeriephoto').style.display = 'flex';
-        document.querySelector('.projectcontainer').style.display = 'grid';
-        document.querySelector('.separation').style.display = 'flex';
-        document.querySelector('.addphoto').style.display = 'flex';
-        document.querySelector('.removeproject').style.display = 'flex';
+    document.querySelector('.newdiv2').style.display = 'none';
+    document.querySelector('.modal').removeAttribute('id');
+    document.querySelector('.linkarrowreturn').style.display = 'none';
+    document.querySelector('.galeriephoto').style.display = 'flex';
+    document.querySelector('.projectcontainer').style.display = 'grid';
+    document.querySelector('.separation').style.display = 'flex';
+    document.querySelector('.addphoto').style.display = 'flex';
+    document.querySelector('.removeproject').style.display = 'flex';
     })
 
 
@@ -543,7 +548,7 @@ const toFormAddPhoto = document.querySelector('.addphoto').addEventListener('cli
         formData.append('category', categoryForm);
 
 
-
+// ajout d'un projet //
 
         postData();
         async function postData() {
@@ -556,7 +561,6 @@ const toFormAddPhoto = document.querySelector('.addphoto').addEventListener('cli
                     headers: {
                         Accept: "application/json",
                         Authorization: `Bearer ${itemGetter}`,
-                        //"Content-Type": "multipart/form-data"
                     }
                 })
                 let response = sending.ok
@@ -581,4 +585,17 @@ const toFormAddPhoto = document.querySelector('.addphoto').addEventListener('cli
     })
 
 
+})
+
+// bouton logout pour se déconnecter de la partie admin //
+
+document.querySelector('.lien-header').addEventListener('click', (event) => {
+    const checkToken = window.localStorage.getItem('tokenUser');
+    if (checkToken != null)
+    {
+        event.preventDefault()
+        window.localStorage.removeItem("tokenUser");
+        location.reload();
+    }
+    
 })
