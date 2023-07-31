@@ -73,7 +73,7 @@ async function ajoutProjet (){
 
         if(token != null)
         {
-            window.location.href='file:///C:/Users/flore/Desktop/test_projet-3/Projet3/FrontEnd/index.html'
+            window.location.href='index.html';
         }
         else
         {
